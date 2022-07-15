@@ -2,7 +2,7 @@
   "private": true,
   "packageManager": "pnpm@7.4.0",
   "scripts": {
-    "build": "vite build",
+    "build": "cross-env NODE_ENV=production vite-ssg build",
     "dev": "vite --port 3333 --open",
     "lint": "eslint .",
     "typecheck": "vue-tsc --noEmit",
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^8.9.2",
+    "@vueuse/head": "^0.7.6",
     "vue": "^3.2.37",
     "vue-router": "^4.1.2"
   },
@@ -21,6 +22,7 @@
     "@unocss/reset": "^0.44.1",
     "@vitejs/plugin-vue": "^3.0.0",
     "@vue/test-utils": "^2.0.2",
+    "cross-env": "^7.0.3",
     "eslint": "^8.19.0",
     "jsdom": "^20.0.0",
     "pnpm": "^7.5.1",
@@ -31,6 +33,7 @@
     "unplugin-vue-components": "^0.21.1",
     "vite": "^3.0.0",
     "vite-plugin-pages": "^0.25.0",
+    "vite-ssg": "^0.20.2",
     "vitest": "^0.18.0",
     "vue-tsc": "^0.38.5"
   },
