@@ -4,14 +4,17 @@ specifiers:
   '@antfu/eslint-config': ^0.25.2
   '@iconify-json/carbon': ^1.1.6
   '@types/node': ^18.0.3
+  '@types/nprogress': ^0.2.0
   '@unocss/reset': ^0.44.1
   '@vitejs/plugin-vue': ^3.0.0
   '@vue/test-utils': ^2.0.2
   '@vueuse/core': ^8.9.2
   '@vueuse/head': ^0.7.6
   cross-env: ^7.0.3
+  dayjs: ^1.11.3
   eslint: ^8.19.0
   jsdom: ^20.0.0
+  nprogress: ^0.2.0
   pnpm: ^7.5.1
   prettier: 2.7.1
   typescript: ^4.7.4
@@ -29,6 +32,8 @@ specifiers:
 dependencies:
   '@vueuse/core': 8.9.2_vue@3.2.37
   '@vueuse/head': 0.7.6_vue@3.2.37
+  dayjs: 1.11.3
+  nprogress: 0.2.0
   vue: 3.2.37
   vue-router: 4.1.2_vue@3.2.37
 
@@ -36,6 +41,7 @@ devDependencies:
   '@antfu/eslint-config': 0.25.2_4x5o4skxv6sl53vpwefgt23khm
   '@iconify-json/carbon': 1.1.6
   '@types/node': 18.0.3
+  '@types/nprogress': 0.2.0
   '@unocss/reset': 0.44.1
   '@vitejs/plugin-vue': 3.0.0_vite@3.0.0+vue@3.2.37
   '@vue/test-utils': 2.0.2_vue@3.2.37
@@ -335,6 +341,10 @@ packages:
 
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
+    dev: true
+
+  /@types/nprogress/0.2.0:
+    resolution: {integrity: sha512-1cYJrqq9GezNFPsWTZpFut/d4CjpZqA0vhqDUPFWYKF1oIyBz5qnoYMzR+0C/T96t3ebLAC1SSnwrVOm5/j74A==}
     dev: true
 
   /@types/unist/2.0.6:
@@ -1163,6 +1173,10 @@ packages:
       whatwg-mimetype: 3.0.0
       whatwg-url: 11.0.0
     dev: true
+
+  /dayjs/1.11.3:
+    resolution: {integrity: sha512-xxwlswWOlGhzgQ4TKzASQkUhqERI3egRNqgV4ScR8wlANA/A9tZ7miXa44vTTKEq5l7vWoL5G57bG3zA+Kow0A==}
+    dev: false
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
@@ -2975,6 +2989,10 @@ packages:
     dependencies:
       path-key: 3.1.1
     dev: true
+
+  /nprogress/0.2.0:
+    resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==}
+    dev: false
 
   /nth-check/2.0.1:
     resolution: {integrity: sha512-it1vE95zF6dTT9lBsYbxvqh0Soy4SPowchj0UBGj/V6cTPnXXtQOPUbhZ6CmGzAD/rW22LQK6E96pcdJXk4A4w==}
