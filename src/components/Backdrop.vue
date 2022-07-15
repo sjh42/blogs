@@ -29,19 +29,19 @@ function init(width = 1920, height= 947) {
 
 	step({
 		start: { x: 0, y: height },
-		length: 2,
+		length: 4,
 		theta: -r90,
 	})
 
 	step({
 		start: { x: width, y: 0 },
-		length: 2,
+		length: 4,
 		theta: r90,
 	})
 
 	step({
 		start: { x: width, y: height },
-		length: 2,
+		length: 4,
 		theta: -r180,
 	})
 }
