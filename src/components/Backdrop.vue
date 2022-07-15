@@ -2,6 +2,7 @@
 const el = $ref<HTMLCanvasElement>();
 const ctx = $computed(() => el!.getContext("2d")!);
 const color = 'rgba(136,136,136, 0.15)'
+const size = reactive(useWindowSize())
 
 const r180 = Math.PI
 const r90 = Math.PI / 2
@@ -18,7 +19,7 @@ interface Branch {
 }
 
 // 初始化
-function init(width = 1920, height= 947) {
+function init(width = size.width, height= size.height) {
 	ctx.strokeStyle = color
 
 	step({
