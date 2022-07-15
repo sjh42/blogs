@@ -58,7 +58,7 @@ function step(b: Branch, depth = 0) {
 		pendingTashs.push(() =>
 			step({
 				start: end,
-				length: b.length  + (Math.random() * 10 - 8),
+				length: b.length  + (Math.random() * 10 - 5),
 				theta: b.theta - 0.3 * Math.random(),
 			},  depth + 1)
 		)
@@ -68,7 +68,7 @@ function step(b: Branch, depth = 0) {
 		pendingTashs.push(() =>
 			step({
 				start: end,
-				length: b.length + (Math.random() * 10 - 8),
+				length: b.length + (Math.random() * 10 - 5),
 				theta: b.theta + 0.3 * Math.random(),
 			},  depth + 1)
 		)
@@ -85,7 +85,7 @@ let frameCount = 0
 function startFrame() {
 	requestAnimationFrame(() => {
 		frameCount += 1
-		if (frameCount % 6 === 0)
+		if (frameCount % 3 === 0)
 			frame()
 		startFrame()
 	})
