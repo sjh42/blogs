@@ -6,6 +6,7 @@ const size = reactive(useWindowSize())
 
 const r180 = Math.PI
 const r90 = Math.PI / 2
+const l10 = 10
 
 interface Point {
 	x: number;
@@ -24,25 +25,25 @@ function init(width = size.width, height= size.height) {
 
 	step({
 		start: { x: 0, y: 0 },
-		length: 2,
+		length: l10,
 		theta: r180,
 	})
 
 	step({
 		start: { x: 0, y: height },
-		length: 4,
+		length: l10,
 		theta: -r90,
 	})
 
 	step({
 		start: { x: width, y: 0 },
-		length: 4,
+		length: l10,
 		theta: r90,
 	})
 
 	step({
 		start: { x: width, y: height },
-		length: 4,
+		length: l10,
 		theta: -r180,
 	})
 }
