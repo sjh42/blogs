@@ -11,12 +11,13 @@ specifiers:
   '@vueuse/core': ^8.9.2
   '@vueuse/head': ^0.7.6
   cross-env: ^7.0.3
-  dayjs: ^1.11.3
   eslint: ^8.19.0
   jsdom: ^20.0.0
+  markdown-it-prism: ^2.2.4
   nprogress: ^0.2.0
   pnpm: ^7.5.1
   prettier: 2.7.1
+  prismjs: ^1.28.0
   typescript: ^4.7.4
   unocss: ^0.44.1
   unplugin-auto-import: ^0.9.2
@@ -33,7 +34,6 @@ specifiers:
 dependencies:
   '@vueuse/core': 8.9.2_vue@3.2.37
   '@vueuse/head': 0.7.6_vue@3.2.37
-  dayjs: 1.11.3
   nprogress: 0.2.0
   vue: 3.2.37
   vue-router: 4.1.2_vue@3.2.37
@@ -49,8 +49,10 @@ devDependencies:
   cross-env: 7.0.3
   eslint: 8.19.0
   jsdom: 20.0.0
+  markdown-it-prism: 2.2.4
   pnpm: 7.5.1
   prettier: 2.7.1
+  prismjs: 1.28.0
   typescript: 4.7.4
   unocss: 0.44.1_vite@3.0.0
   unplugin-auto-import: 0.9.2_tdojunihpwk4q7lmt675eqctgy
@@ -1203,10 +1205,6 @@ packages:
       whatwg-mimetype: 3.0.0
       whatwg-url: 11.0.0
     dev: true
-
-  /dayjs/1.11.3:
-    resolution: {integrity: sha512-xxwlswWOlGhzgQ4TKzASQkUhqERI3egRNqgV4ScR8wlANA/A9tZ7miXa44vTTKEq5l7vWoL5G57bG3zA+Kow0A==}
-    dev: false
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
@@ -2902,6 +2900,13 @@ packages:
       sourcemap-codec: 1.4.8
     dev: true
 
+  /markdown-it-prism/2.2.4:
+    resolution: {integrity: sha512-7oQVppKjiZqVQo7s7eLTIs3o/0hdvqAWDW8lvRel6eUCGD4iXjKbSZjvdHZFA2ZnCkQUF47kbvtWZDVQrv7zyQ==}
+    engines: {node: '>=6.0.0'}
+    dependencies:
+      prismjs: 1.28.0
+    dev: true
+
   /markdown-it/13.0.1:
     resolution: {integrity: sha512-lTlxriVoy2criHP0JKRhO2VDG9c2ypWCsT237eDiLqi09rmbKoUetyGHq2uOIRoRS//kfoJckS0eUzzkDR+k2Q==}
     hasBin: true
@@ -3430,6 +3435,11 @@ packages:
     resolution: {integrity: sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==}
     engines: {node: '>=10.13.0'}
     hasBin: true
+    dev: true
+
+  /prismjs/1.28.0:
+    resolution: {integrity: sha512-8aaXdYvl1F7iC7Xm1spqSaY/OJBpYW3v+KJ+F17iYxvdc8sfjW194COK5wVhMZX45tGteiBQgdvD/nhxcRwylw==}
+    engines: {node: '>=6'}
     dev: true
 
   /prop-types/15.8.1:

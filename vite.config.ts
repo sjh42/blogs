@@ -8,6 +8,7 @@ import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Unocss from 'unocss/vite'
 import Markdown from 'vite-plugin-vue-markdown'
+import prism from 'markdown-it-prism'
 
 export default defineConfig({
   resolve: {
@@ -24,11 +25,20 @@ export default defineConfig({
 		// https://github.com/antfu/vite-plugin-vue-markdown
 		Markdown({
 			wrapperComponent: 'post',
-			headEnabled: true
+			headEnabled: true,
+      markdownItUses: [
+        prism,
+      ],
 		}),
 
     // https://github.com/hannoeru/vite-plugin-pages
-    Pages(),
+    Pages({
+      pagesDir: 'pages',
+      extensions: ['vue', 'md'],
+      extendRoute(route) {
+
+      }
+    }),
 
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({

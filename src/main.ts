@@ -1,13 +1,17 @@
 import { ViteSSG } from 'vite-ssg'
 import autoRoutes from 'pages-generated'
 import NProgress from 'nprogress'
-import dayjs from 'dayjs'
-import LocalizedFormat from 'dayjs/plugin/localizedFormat.js'
 import App from './App.vue'
 
 import '@unocss/reset/tailwind.css'
 import './styles/main.css'
 import 'uno.css'
+import 'prismjs'
+import 'prismjs/components/prism-bash'
+import 'prismjs/components/prism-typescript'
+import 'prismjs/components/prism-javascript'
+import 'prismjs/components/prism-markup'
+import 'prismjs/components/prism-markup-templating'
 
 const routes = autoRoutes.map((i) => {
   return {
@@ -18,8 +22,6 @@ const routes = autoRoutes.map((i) => {
   }
 })
 
-console.log(`routes`, routes)
-
 const scrollBehavior = (to: any, from: any, savedPosition: any) => {
   if (savedPosition)
     return savedPosition
@@ -28,7 +30,6 @@ const scrollBehavior = (to: any, from: any, savedPosition: any) => {
 }
 
 export const createApp = ViteSSG(App, { routes, scrollBehavior },  ({ router, isClient }) => {
-	dayjs.extend(LocalizedFormat)
 
 	if (isClient) {
 		router.beforeEach(() => { NProgress.start() })
