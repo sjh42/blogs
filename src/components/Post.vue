@@ -72,6 +72,7 @@ onMounted(() => {
   </article>
   <div v-if="route.path !== '/'" class="prose m-auto mt-8 mb-8">
     <br />
-    <router-link :to="route.path.split('/').slice(0, -1).join('/') || '/'" class="font-mono no-underline opacity-50 hover:opacity-75"> cd .. </router-link>
+    <!-- <router-link :to="route.path.split('/').slice(0, -1).join('/') || '/'" class="font-mono no-underline opacity-50 hover:opacity-75"> cd .. </router-link>-->
+    <router-link :to="'/'" class="font-mono no-underline opacity-50 hover:opacity-75"> cd .. </router-link>
   </div>
 </template>

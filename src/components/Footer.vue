@@ -1,15 +1,10 @@
 <template>
-  <nav text-xl mt-6 inline-flex gap-2>
-    <button icon-btn @click="toggleDark()">
-      <div dark:i-carbon-moon i-carbon-sun />
-    </button>
-
-    <a
-      icon-btn i-carbon-logo-github
-      rel="noreferrer"
-      href="https://github.com/sjh42/blogs"
-      target="_blank"
-      title="GitHub"
-    />
-  </nav>
+  <footer mt-10 mb-6 prose m-auto opacity-50 flex flex-col items-center>
+    <div>
+      <a href="https://vitejs.dev" target="_blank" title="Vite">build with Vite</a>
+    </div>
+    <div>
+      <a icon-btn i-carbon-logo-github rel="noreferrer" href="https://github.com/vitejs/vite" target="_blank" title="Vite" />
+    </div>
+  </footer>
 </template>

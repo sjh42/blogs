@@ -5,13 +5,10 @@ import App from './App.vue'
 
 import '@unocss/reset/tailwind.css'
 import './styles/main.css'
+import './styles/prose.css'
+import './styles/markdown.css'
 import 'uno.css'
-import 'prismjs'
-import 'prismjs/components/prism-bash'
-import 'prismjs/components/prism-typescript'
-import 'prismjs/components/prism-javascript'
-import 'prismjs/components/prism-markup'
-import 'prismjs/components/prism-markup-templating'
+
 
 const routes = autoRoutes.map((i) => {
   return {

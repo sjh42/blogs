@@ -28,7 +28,6 @@ const routes: Post[] = router.getRoutes()
   }))
 
 const posts = computed(() => (props.posts || routes))
-console.log(posts.value)
 </script>
 
 <template>
