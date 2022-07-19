@@ -5,9 +5,6 @@ const { frontmatter } = defineProps({
     required: true,
   },
 })
-
-console.log(`post`)
-
 const router = useRouter()
 const route = useRoute()
 const content = ref<HTMLDivElement>()
