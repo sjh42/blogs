@@ -11,6 +11,8 @@ declare module '@vue/runtime-core' {
     Counter: typeof import('./src/components/Counter.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
     Post: typeof import('./src/components/Post.vue')['default']
+    PostsList: typeof import('./src/components/PostsList.vue')['default']
+    README: typeof import('./src/components/README.md')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

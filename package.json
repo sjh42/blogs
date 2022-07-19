@@ -12,6 +12,7 @@
   "dependencies": {
     "@vueuse/core": "^8.9.2",
     "@vueuse/head": "^0.7.6",
+    "dayjs": "^1.11.3",
     "nprogress": "^0.2.0",
     "vue": "^3.2.37",
     "vue-router": "^4.1.2"
@@ -19,6 +20,8 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.25.2",
     "@iconify-json/carbon": "^1.1.6",
+    "@types/fs-extra": "^9.0.13",
+    "@types/markdown-it-link-attributes": "^3.0.1",
     "@types/node": "^18.0.3",
     "@types/nprogress": "^0.2.0",
     "@unocss/reset": "^0.44.1",
@@ -26,7 +29,10 @@
     "@vue/test-utils": "^2.0.2",
     "cross-env": "^7.0.3",
     "eslint": "^8.19.0",
+    "fs-extra": "^10.1.0",
+    "gray-matter": "^4.0.3",
     "jsdom": "^20.0.0",
+    "markdown-it-link-attributes": "^4.0.0",
     "markdown-it-prism": "^2.2.4",
     "pnpm": "^7.5.1",
     "prettier": "2.7.1",
