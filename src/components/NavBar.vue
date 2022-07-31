@@ -10,7 +10,6 @@
       <div class="right">
         <router-link to="/" title="Blog">
           <span class="lt-md:hidden">Blog</span>
-          <div i-ri-article-line md:hidden />
         </router-link>
         <a icon-btn @click="toggleDark()">
           <div dark:i-carbon-moon i-carbon-sun />

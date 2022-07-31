@@ -48,6 +48,7 @@ function init(width = size.width, height= size.height) {
 	})
 }
 
+
 // 执行栈
 const pendingTashs: Function[] = [];
 

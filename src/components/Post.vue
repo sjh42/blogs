@@ -54,11 +54,11 @@ onMounted(() => {
 
 <template>
   <div v-if="frontmatter.display ?? frontmatter.title" class="prose m-auto mb-8">
-    <h1 class="mb-0">
-      {{ frontmatter.display ?? frontmatter.title }}
-    </h1>
-    <p v-if="frontmatter.date" class="opacity-50 !-mt-2">
-      {{ useDateFormat(frontmatter.date, 'YYYY-MM-DD HH:mm') }} <span v-if="frontmatter.duration">· {{ frontmatter.duration }}</span>
+    <div class="mb-0 text-xl sm:text-3xl" flex="~ gap2 sm:gap3 wrap">
+      <a aria-current="page" href="/" class="router-link-active router-link-exact-active !border-none !font-400">{{ frontmatter.display ?? frontmatter.title }}</a>
+    </div>
+    <p v-if="frontmatter.date" class="opacity-50">
+      {{ formatDate(frontmatter.date) }} <span v-if="frontmatter.duration">· {{ frontmatter.duration }}</span>
     </p>
     <p v-if="frontmatter.subtitle" class="opacity-50 !-mt-6 italic">
       {{ frontmatter.subtitle }}
