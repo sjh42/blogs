@@ -4,6 +4,7 @@ export interface Post {
 	title: string
 	date: string
 	lang?: string
+	tags?: string
 	desc?: string
 	platform?: string
 	duration?: string
@@ -25,6 +26,8 @@ const routes: Post[] = router
 		title: i.meta.frontmatter.title,
 		date: i.meta.frontmatter.date,
 		lang: i.meta.frontmatter.lang,
+		desc: i.meta.frontmatter.desc,
+		tags: i.meta.frontmatter.tags,
 		duration: i.meta.frontmatter.duration
 	}))
 
@@ -48,6 +51,7 @@ const isSameYear = (a: Date | string | number, b: Date | string | number) => a &
 					<div class="title text-lg leading-1.2em">
 						<span v-if="route.lang === 'zh'" align-middle class="text-xs border border-current rounded px-1 pb-0.2 md:ml--10.5 mr2">中文</span>
 						<span align-middle>{{ route.title }}</span>
+						<span v-if="route.desc" align-middle class="text-xs border border-current rounded px-1 pb-0.2 md:ml-2 mr2">{{ route.desc }}</span>
 					</div>
 					<div class="time opacity-50 text-sm">
 						{{ formatDate(route.date) }}
