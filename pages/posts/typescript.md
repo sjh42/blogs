@@ -16,3 +16,19 @@ type GetReadonlyKeys<T> = {
   [K in keyof T as Equal<{ [P in K] : T[P]}, { readonly [P in K] : T[P]}> extends true ? K : never] : T[K]
 } extends infer F ? keyof F : never
 ```
+
+## 7 - Readonly
+```ts
+type MyReadonly<T> = {
+  readonly [K in keyof T] : T[K]
+} 
+```
+
+## 8 - Readonly2
+```ts 
+type MyReadonly2<T, K = keyof T> = {
+  [P in keyof T as P extends K ? never : P] : T[P]
+} & {
+  readonly [P in keyof T as P extends K ? P : never] : T[P]
+}
+```

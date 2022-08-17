@@ -1,5 +1,5 @@
 ---
-title: Automate with defaultsnpm init
+title: Automate with defaults npm init
 date: 2022-08-01
 lang: zh
 duration: 5min
