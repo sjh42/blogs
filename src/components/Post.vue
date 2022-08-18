@@ -72,7 +72,7 @@ onMounted(() => {
 			{{ frontmatter.subtitle }}
 		</p>
 	</div>
-	<div v-if="route.meta.frontmatter.tags" mr-40 float="right" position="sticky" top-20 w-80>
+	<div v-if="route.meta.frontmatter.tags &&  !getDeviceUa()" mr-40 float="right" position="sticky" top-20 w-80>
 		<span text-xl sm:text-2xl>导航</span>
 		<nav>
 			<ul>
