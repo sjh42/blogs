@@ -32,3 +32,8 @@ type MyReadonly2<T, K = keyof T> = {
   readonly [P in keyof T as P extends K ? P : never] : T[P]
 }
 ```
+
+## 9 - deep readonly
+``` ts
+type DeepReadonly<T> = keyof T extends never ? T : { readonly [K in keyof T]: DeepReadonly<T[K]>}
+```
