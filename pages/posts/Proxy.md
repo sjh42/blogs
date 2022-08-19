@@ -1,9 +1,8 @@
 ---
 title: Proxy
-meta:
-  - name: description
-    content: Proxy
-test: test
+date: 2021-05-19
+lang: zh
+duration: 10min
 ---
 ## 概述 [§](https://es6.ruanyifeng.com/#docs/proxy#概述) [⇧](https://es6.ruanyifeng.com/#docs/proxy)
 
@@ -11,7 +10,7 @@ Proxy用于修改某些操作的默认行为，等同于在语言层面做出修
 
 Proxy可以理解成，在目标对象之前架一层“拦截”，外界对改对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写，Proxy 这个词的原意是代理，用在这里表示由它来“代理”某些操作，可以译为“代理器”。
 
-```javascript
+```ts
 var obj = new Proxy({}, {
   get: function (target, propKey, receiver) {
     console.log(`getting ${propKey}!`);
@@ -26,7 +25,7 @@ var obj = new Proxy({}, {
 
 ES6 原生提供 Proxy 构造函数，用来生成 Proxy 实例。
 
-```javascript
+```ts
 var proxy = new Proxy(target, handler);
 ```
 
@@ -40,7 +39,7 @@ var object = { proxy: new Proxy(target, handler) };
 
 Proxy 实例也可以作为其他对象的原型对象。
 
-```javascript
+```ts
 var proxy = new Proxy({}, {
   get: function(target, propKey) {
     return 35;
@@ -55,7 +54,7 @@ obj.time // 35
 
 同一个拦截器函数，可以设置拦截多个操作。
 
-```javascript
+```ts
 var handler = {
   get: function(target, name) {
     if (name === 'prototype') {

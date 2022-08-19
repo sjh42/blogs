@@ -42,14 +42,6 @@
 
 完整特性,请查看 [Vitesse](https://github.com/antfu/vitesse)
 
-## 从 [Vitesse](https://github.com/antfu/vitesse) 中删除了以下特性
-
-- ~~i18n~~
-- ~~Layouts~~
-- ~~SSG~~
-- ~~PWA~~
-- ~~Markdown~~
-
 ## 预配置
 
 ### UI 框架
