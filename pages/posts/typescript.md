@@ -37,3 +37,8 @@ type MyReadonly2<T, K = keyof T> = {
 ``` ts
 type DeepReadonly<T> = keyof T extends never ? T : { readonly [K in keyof T]: DeepReadonly<T[K]>}
 ```
+
+## 10 -Tuple to Union
+```ts
+type TupleToUnion<T extends any[]> = T[number]
+```
