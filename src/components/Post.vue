@@ -1,8 +1,4 @@
 <script setup lang="ts">
-interface Tags {
-	nav: Array<HTMLDivElement>
-	subNav: Array<HTMLDivElement>
-}
 const { frontmatter } = defineProps({
 	frontmatter: {
 		type: Object,
@@ -12,18 +8,10 @@ const { frontmatter } = defineProps({
 const router = useRouter()
 const route = useRoute()
 const content = ref<HTMLDivElement>()
-const tagsId = ref<Tags>({
-	nav: [],
-	subNav: []
-})
-const tagsSubId = ref<Array<HTMLDivElement>>()
+const tags = ref<Array<HTMLDivElement>>()
 
 function getTagsId(e: HTMLDivElement | undefined) {
-	tagsId.value.nav = Array.from(e!.getElementsByTagName('h2'))
-	tagsSubId.value = Array.from(e!.getElementsByTagName('h3'))
-	tagsId.value.subNav = tagsSubId.value
-
-	console.log(tagsId.value)
+	tags.value = Array.from(e!.querySelectorAll('h1, h2, h3, h4, h5'))
 }
 
 onMounted(() => {
@@ -87,18 +75,16 @@ onMounted(() => {
 	<div v-if="route.meta.frontmatter.tags && !getDeviceUa()" mr-40 float="right" position="sticky" top-20 w-80>
 		<span text-xl sm:text-2xl>导航</span>
 		<nav>
-			<ul>
-				<div v-for="item in tagsId.nav" p-1 hover="color-#54b1bf">
-					<a :href="`#${item.id}`">{{ item.textContent?.replace('#', '') }}</a>
-				</div>
 				<ul>
-					<li v-for="subNav in tagsId.subNav" p-1 hover="color-#54b1bf">
-						<div pl-4>
-							<a :href="`#${subNav.id}`">{{ subNav.textContent?.replace('#', '') }}</a>
+					<li v-for="nav in tags" p-1 hover="color-#54b1bf">
+						<div v-if="nav.nodeName === 'H2'" pl-4>
+							<a :href="`#${nav.id}`">{{ nav.textContent?.replace('#', '') }}</a>
+						</div>
+						<div v-else pl-8>
+							<a :href="`#${nav.id}`">{{ nav.textContent?.replace('#', '') }}</a>
 						</div>
 					</li>
 				</ul>
-			</ul>
 		</nav>
 	</div>
 	<article ref="content">

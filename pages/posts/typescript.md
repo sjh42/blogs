@@ -57,3 +57,13 @@ type Chainable<T = {}> = {
   get: () => T
 }
 ```
+
+## 14 - First of Array
+```ts 
+type First<T extends any[]> = T extends [infer F, ...any[]] ? F : never
+```
+
+## 15 - Last of Array
+```ts 
+type Last<T extends any[]> = T extends [...any[], infer F] ? F : never
+```
