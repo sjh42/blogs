@@ -67,3 +67,8 @@ type First<T extends any[]> = T extends [infer F, ...any[]] ? F : never
 ```ts 
 type Last<T extends any[]> = T extends [...any[], infer F] ? F : never
 ```
+
+## 16 - Pop
+```ts 
+type Pop<T extends any[]> = T extends [...infer F, any] ? F : never
+```
