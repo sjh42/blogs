@@ -72,3 +72,24 @@ type Last<T extends any[]> = T extends [...any[], infer F] ? F : never
 ```ts 
 type Pop<T extends any[]> = T extends [...infer F, any] ? F : never
 ```
+
+## 17 - Currying 1
+```ts 
+type getParams<T> = T extends  (...args : [ ...infer F ]) => any ? F : never
+
+type Shift<T extends any[]> = T extends [any, ...infer F] ? F : never
+
+type Gen<Tuple extends unknown[]> = Shift<Tuple>['length'] extends 0 ? (a: Tuple[0]) => true : (a: Tuple[0]) => Gen<Shift<Tuple>>
+
+declare function Currying<T extends (...args : any[]) => any>(fn: T):Gen<getParams<T>> 
+```
+
+## 18 - Length of Tuple
+```ts
+type Length<T extends readonly any[]> =  T['length']
+```
+
+## 20 - Promise.all
+```ts 
+declare function PromiseAll<T extends unknown[]>(values: readonly [...T]): Promise<{[ P in keyof T]: T[P] extends Promise<infer R> ? R : T[P]}>
+```
