@@ -42,3 +42,54 @@ type DeepReadonly<T> = keyof T extends never ? T : { readonly [K in keyof T]: De
 ```ts
 type TupleToUnion<T extends any[]> = T[number]
 ```
+
+## 11 - Tuple to Object
+```ts
+type TupleToObject<T extends readonly (keyof any)[]> = {
+  [K in T[number]] : K
+}
+```
+
+## 12 - Chainable Options
+```ts
+type Chainable<T = {}> = {
+  option:<K extends string, V>(key: K extends keyof T ? V extends T[K] ? never : K : K, value: V) => Chainable<Omit<T,K> & Record<K,V>>
+  get: () => T
+}
+```
+
+## 14 - First of Array
+```ts 
+type First<T extends any[]> = T extends [infer F, ...any[]] ? F : never
+```
+
+## 15 - Last of Array
+```ts 
+type Last<T extends any[]> = T extends [...any[], infer F] ? F : never
+```
+
+## 16 - Pop
+```ts 
+type Pop<T extends any[]> = T extends [...infer F, any] ? F : never
+```
+
+## 17 - Currying 1
+```ts 
+type getParams<T> = T extends  (...args : [ ...infer F ]) => any ? F : never
+
+type Shift<T extends any[]> = T extends [any, ...infer F] ? F : never
+
+type Gen<Tuple extends unknown[]> = Shift<Tuple>['length'] extends 0 ? (a: Tuple[0]) => true : (a: Tuple[0]) => Gen<Shift<Tuple>>
+
+declare function Currying<T extends (...args : any[]) => any>(fn: T):Gen<getParams<T>> 
+```
+
+## 18 - Length of Tuple
+```ts
+type Length<T extends readonly any[]> =  T['length']
+```
+
+## 20 - Promise.all
+```ts 
+declare function PromiseAll<T extends unknown[]>(values: readonly [...T]): Promise<{[ P in keyof T]: T[P] extends Promise<infer R> ? R : T[P]}>
+```
