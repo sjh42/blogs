@@ -93,3 +93,8 @@ type Length<T extends readonly any[]> =  T['length']
 ```ts 
 declare function PromiseAll<T extends unknown[]>(values: readonly [...T]): Promise<{[ P in keyof T]: T[P] extends Promise<infer R> ? R : T[P]}>
 ```
+
+## 42 - Exclude
+```ts
+type MyExclude<T, U> = T extends U ? never : T
+```
