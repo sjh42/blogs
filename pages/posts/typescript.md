@@ -98,3 +98,36 @@ declare function PromiseAll<T extends unknown[]>(values: readonly [...T]): Promi
 ```ts
 type MyExclude<T, U> = T extends U ? never : T
 ```
+
+## 62 - Type Lookup
+```ts
+type LookUp<U, T> = U extends { type: infer F} 
+  ? F extends T ? U : never 
+  : never
+```
+
+## 106 - Trim Left
+```ts
+type TrimLeft<S extends string> = S extends `${' ' | '\n' | '\t'}${ infer R}` ? TrimLeft<R> : S
+```
+
+## 108 - Trim
+```ts 
+type WhiteSpace = " " | "\n" | "\t"
+
+type Trim<S extends string> =  S extends | `${WhiteSpace}${infer R}` | `${infer R}${WhiteSpace}` ? Trim<R> : S  
+```
+
+## 110 - Capitalize
+```ts 
+type MyCapitalize<S extends string> = S extends `${infer F}${infer R}` ? `${Uppercase<F>}${R}` : S
+```
+
+## 116 - Replace
+```ts
+type Replace<S extends string, From extends string, To extends string> = From extends '' 
+  ? S 
+  : S extends `${infer Start}${From}${infer End}`
+    ? `${Start}${To}${End}`
+    : S
+```
