@@ -131,3 +131,10 @@ type Replace<S extends string, From extends string, To extends string> = From ex
     ? `${Start}${To}${End}`
     : S
 ```
+
+## 119 - ReplaceAll
+```ts 
+type ReplaceAll<S extends string, From extends string, To extends string> = S extends `${infer Start}${From}${infer End}`
+  ? `${Start}${From extends '' ? From : To}${ReplaceAll<End, From, To>}`
+  : S
+```
