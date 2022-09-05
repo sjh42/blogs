@@ -138,3 +138,20 @@ type ReplaceAll<S extends string, From extends string, To extends string> = S ex
   ? `${Start}${From extends '' ? From : To}${ReplaceAll<End, From, To>}`
   : S
 ```
+
+## 189 - Awaited
+```ts
+type MyAwaited<T extends Promise<unknown>> = T extends Promise<infer R>
+ ? R extends Promise<unknown>
+  ? MyAwaited<R>
+  : R
+: never
+```
+
+## 191 - Append Argument
+```ts
+type AppendArgument<T extends (...args: any[]) => any, U> 
+  = T extends (...args: infer A) 
+  => infer B ? (...args: [...A, U]) 
+  => B : never
+```
