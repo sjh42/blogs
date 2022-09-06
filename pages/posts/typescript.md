@@ -155,3 +155,8 @@ type AppendArgument<T extends (...args: any[]) => any, U>
   => infer B ? (...args: [...A, U]) 
   => B : never
 ```
+
+## 296 - Permutation
+```ts
+type Permutation<T, K = T> = K[] extends never[] ? [] : K extends K ? [K, ...Permutation<Exclude<T,K>>] : never
+```
