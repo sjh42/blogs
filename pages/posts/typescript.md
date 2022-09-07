@@ -160,3 +160,21 @@ type AppendArgument<T extends (...args: any[]) => any, U>
 ```ts
 type Permutation<T, K = T> = K[] extends never[] ? [] : K extends K ? [K, ...Permutation<Exclude<T,K>>] : never
 ```
+
+## 298 - Length of String
+```ts
+type StringToArray<S extends string> = S extends `${infer F}${infer R}`
+  ? [F, ...StringToArray<R>]
+  : []
+
+type LengthOfString<S extends string> = StringToArray<S>['length']
+```
+
+## 459 - Flatten
+```ts
+type Flatten<T extends unknown[]> = T extends [infer F, ...infer R] 
+  ? [...(F extends any[] 
+    ? Flatten<F> 
+    : [F]), ...Flatten<R>] 
+  : []
+```
