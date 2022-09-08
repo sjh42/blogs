@@ -178,3 +178,10 @@ type Flatten<T extends unknown[]> = T extends [infer F, ...infer R]
     : [F]), ...Flatten<R>] 
   : []
 ```
+
+# 527 - Append to object
+```ts
+type AppendToObject<T, K extends PropertyKey, V> = {
+  [P in keyof T | K] : P extends keyof T ? T[P]: V
+}
+```
