@@ -26,7 +26,7 @@ const scrollBehavior = (to: any, from: any, savedPosition: any) => {
     return { top: 0 }
 }
 
-export const createApp = ViteSSG(App, { routes, scrollBehavior },  ({ app, router, routes, isClient, initialState  }) => {
+export const createApp = ViteSSG(App, { routes, scrollBehavior },  ({ /* app */ router, /* routes */ isClient /* initialState */  }) => {
 
 	if (isClient) {
 		router.beforeEach(() => { NProgress.start() })

@@ -185,3 +185,11 @@ type AppendToObject<T, K extends PropertyKey, V> = {
   [P in keyof T | K] : P extends keyof T ? T[P]: V
 }
 ```
+
+## 529 - Absolute
+```ts
+type Absolute<T extends number | string | bigint> = 
+  `${T}` extends `-${infer R}`
+    ? R
+    : `${T}`
+```
