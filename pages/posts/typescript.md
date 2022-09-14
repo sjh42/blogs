@@ -93,3 +93,103 @@ type Length<T extends readonly any[]> =  T['length']
 ```ts 
 declare function PromiseAll<T extends unknown[]>(values: readonly [...T]): Promise<{[ P in keyof T]: T[P] extends Promise<infer R> ? R : T[P]}>
 ```
+
+## 42 - Exclude
+```ts
+type MyExclude<T, U> = T extends U ? never : T
+```
+
+## 62 - Type Lookup
+```ts
+type LookUp<U, T> = U extends { type: infer F} 
+  ? F extends T ? U : never 
+  : never
+```
+
+## 106 - Trim Left
+```ts
+type TrimLeft<S extends string> = S extends `${' ' | '\n' | '\t'}${ infer R}` ? TrimLeft<R> : S
+```
+
+## 108 - Trim
+```ts 
+type WhiteSpace = " " | "\n" | "\t"
+
+type Trim<S extends string> =  S extends | `${WhiteSpace}${infer R}` | `${infer R}${WhiteSpace}` ? Trim<R> : S  
+```
+
+## 110 - Capitalize
+```ts 
+type MyCapitalize<S extends string> = S extends `${infer F}${infer R}` ? `${Uppercase<F>}${R}` : S
+```
+
+## 116 - Replace
+```ts
+type Replace<S extends string, From extends string, To extends string> = From extends '' 
+  ? S 
+  : S extends `${infer Start}${From}${infer End}`
+    ? `${Start}${To}${End}`
+    : S
+```
+
+## 119 - ReplaceAll
+```ts 
+type ReplaceAll<S extends string, From extends string, To extends string> = S extends `${infer Start}${From}${infer End}`
+  ? `${Start}${From extends '' ? From : To}${ReplaceAll<End, From, To>}`
+  : S
+```
+
+## 189 - Awaited
+```ts
+type MyAwaited<T extends Promise<unknown>> = T extends Promise<infer R>
+ ? R extends Promise<unknown>
+  ? MyAwaited<R>
+  : R
+: never
+```
+
+## 191 - Append Argument
+```ts
+type AppendArgument<T extends (...args: any[]) => any, U> 
+  = T extends (...args: infer A) 
+  => infer B ? (...args: [...A, U]) 
+  => B : never
+```
+
+## 296 - Permutation
+```ts
+type Permutation<T, K = T> = K[] extends never[] ? [] : K extends K ? [K, ...Permutation<Exclude<T,K>>] : never
+```
+
+## 298 - Length of String
+```ts
+type StringToArray<S extends string> = S extends `${infer F}${infer R}`
+  ? [F, ...StringToArray<R>]
+  : []
+
+type LengthOfString<S extends string> = StringToArray<S>['length']
+```
+
+## 459 - Flatten
+```ts
+type Flatten<T extends unknown[]> = T extends [infer F, ...infer R] 
+  ? [...(F extends any[] 
+    ? Flatten<F> 
+    : [F]), ...Flatten<R>] 
+  : []
+```
+
+# 527 - Append to object
+```ts
+type AppendToObject<T, K extends PropertyKey, V> = {
+  [P in keyof T | K] : P extends keyof T ? T[P]: V
+}
+```
+
+## 529 - Absolute
+```ts
+type Absolute<T extends number | string | bigint> = 
+  `${T}` extends `-${infer R}`
+    ? R
+    : `${T}`
+```

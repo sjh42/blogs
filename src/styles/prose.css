@@ -186,7 +186,8 @@
   line-height: 1.7142857;
 }
 .prose thead {
-  color: #111827;
+  /* color: #111827; */
+  color: #e5e7eb;
   font-weight: 600;
   border-bottom-width: 1px;
   border-bottom-color: #d1d5db;
