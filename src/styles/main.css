@@ -83,3 +83,7 @@ h2 + p > em:first-child {
 html:not(.dark) [img-dark] {
   display: none;
 }
+html:not(.dark) .prose pre {
+  background-color: rgba(243, 244, 246, 0.6);
+}
+
