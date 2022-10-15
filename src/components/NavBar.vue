@@ -1,9 +1,7 @@
 <template>
   <header class="header z-40">
     <router-link class="w-10 h-10 absolute lg:fixed m-6 select-none outline-none" to="/" focusable="false">
-      <!-- <img v-show="isDark" src="/logo-dark.svg?url" alt="logo" />
-      <img v-show="!isDark" src="/logo.svg?url" alt="logo" /> -->
-      <img src="/favicon.svg?url" alt="logo" />
+      <i class="i-carbon-fish-multiple text-3xl" />
     </router-link>
     <nav class="nav">
       <div class="spacer" />
