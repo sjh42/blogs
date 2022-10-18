@@ -3,7 +3,6 @@ title: Using Changesets with pnpm
 date: 2022-10-15
 duration: 15min
 lang: zh
-desc: 翻译
 ---
 
 ## Setup
