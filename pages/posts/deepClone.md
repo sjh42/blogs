@@ -1,9 +1,9 @@
---- 
+---
 title: Object.assign(...) 与 JSON.parse(JSON.stringify(...))的拷贝区别
 date: 2021-10-01
 lang: zh
 duration: 8min
---- 
+---
 
 ## [Object.assign(...)](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
 > `Object.assign()`方法将所有可枚举（`Object.propertyIsEnumerable()` 返回 `true`）和自有（`Object.hasOwnProperty()` 返回 `true`）属性从一个或多个源对象复制到目标对象，返回修改后的对象

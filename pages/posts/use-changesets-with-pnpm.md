@@ -3,7 +3,6 @@ title: Using Changesets with pnpm
 date: 2022-10-15
 duration: 15min
 lang: zh
-desc: 翻译
 ---
 
 ## Setup
@@ -16,11 +15,8 @@ desc: 翻译
 
 **pnpm-workspace.yaml**
 ```yaml
-node_modules:
 packages: 
  - packages/*
-package: 
-pnpm-workspace:
 ```
 
 要在pnpm工作区上设置changesets，请将changesets作为开发依赖项安装在工作区的根目录中：
