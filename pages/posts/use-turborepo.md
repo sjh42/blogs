@@ -1,7 +1,7 @@
 ---
 title: Manage Monorepo with pnpm
 duration: 10min
-date: 2022-10-18
+date: 2022-10-15
 tags: monorepo
 desc: 总结
 lang: zh
@@ -24,6 +24,12 @@ npx create-turbo@latest
 然后cd进入`my-turborepo`文件夹中，install
 
 这样安装的turborepo带有模板，这不是我需要的，所以我们新建一个文件夹，进行初始化，然后`run script`
+
+<Note desc="提示" color="border-yellow-400" icon-bg="bg-yellow-400">
+  <template #title>
+    安装的前提，必须要在工作区根目录中有pnpm-workspace.yaml文件
+  </template>
+</Note>
 
 ```bash
 pnpm add turbo -Dw

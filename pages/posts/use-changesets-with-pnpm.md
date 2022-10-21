@@ -1,7 +1,7 @@
 ---
 title: Using Changesets with pnpm
-date: 2022-10-15
-duration: 15min
+date: 2022-10-18
+duration: 10min
 lang: zh
 tags: monorepo
 desc: 总结
@@ -9,9 +9,9 @@ desc: 总结
 
 ## 1. Setup
 
-<Note desc="提示" color="border-yellow-400">
+<Note desc="提示" color="border-yellow-400" icon-bg="bg-yellow-400">
   <template #title>
-    安装的前提，必须要在工作区根目录中有pnpm-workspace.yaml文件指定目录
+    安装的前提，必须要在工作区根目录中有pnpm-workspace.yaml文件
   </template>
 </Note>
 
