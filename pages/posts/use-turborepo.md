@@ -50,7 +50,7 @@ packages:
 
 ```json
 {
-    "$schema": "https://turborepo.org/schema.json"
+  "$schema": "https://turborepo.org/schema.json"
 }
 ```
 

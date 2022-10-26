@@ -17,8 +17,8 @@ desc: 总结
 
 **pnpm-workspace.yaml**
 ```yaml
-packages: 
- - packages/*
+packages:
+  - packages/*
 ```
 
 要在pnpm工作区上设置changesets，请将changesets作为开发依赖项安装在工作区的根目录中：
