@@ -1,7 +1,6 @@
 ---
 title: rollup简单打包配置
 date: 2022-07-26
-lang: zh
 duration: 3min
 ---
 

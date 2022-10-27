@@ -170,7 +170,7 @@ type StringToArray<S extends string> = S extends `${infer F}${infer R}`
 type LengthOfString<S extends string> = StringToArray<S>['length']
 ```
 
-## 459 - Flatten
+## [459 - Flatten](https://github.com/type-challenges/type-challenges/issues?q=is%3Aissue+Flatten+is%3Aopen)
 ```ts
 type Flatten<T extends unknown[]> = T extends [infer F, ...infer R] 
   ? [...(F extends any[] 
@@ -179,17 +179,25 @@ type Flatten<T extends unknown[]> = T extends [infer F, ...infer R]
   : []
 ```
 
-## 527 - Append to object
+## [527 - Append to object](https://github.com/type-challenges/type-challenges/issues?q=is%3Aissue+Append%20to%20object+is%3Aopen)
 ```ts
 type AppendToObject<T, K extends PropertyKey, V> = {
   [P in keyof T | K] : P extends keyof T ? T[P]: V
 }
 ```
 
-## 529 - Absolute
+## [529 - Absolute](https://github.com/type-challenges/type-challenges/issues?q=is%3Aissue+Absolute+is%3Aopen)
 ```ts
 type Absolute<T extends number | string | bigint> = 
   `${T}` extends `-${infer R}`
     ? R
     : `${T}`
+```
+## [4484 - IsTuple](https://github.com/type-challenges/type-challenges/issues?q=label%3A4484+label%3Aanswer)
+```ts
+type IsTuple<T> = [T] extends [never]
+  ? false
+  : T extends ([] | [any] | Readonly<[unknown]> | [unknown] | Readonly<[any]>) 
+    ? true
+    : false
 ```

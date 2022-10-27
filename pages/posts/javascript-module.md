@@ -1,7 +1,6 @@
 ---
 title: JS Module
 date: 2022-04-12
-lang: zh
 duration: 30min
 ---
 

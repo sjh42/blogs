@@ -1,7 +1,6 @@
 ---
 title: tsup简单打包配置
 date: 2022-10-17
-lang: zh
 duration: 5min
 ---
 

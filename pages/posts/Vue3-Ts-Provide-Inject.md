@@ -2,7 +2,6 @@
 title: Vue3 + TS 为 provide / inject 标注类型
 duration: '5min'
 date: 2022-08-23
-lang: zh
 ---
 
 在使用`socket.io`、`Vue3`和`TS`做一个聊天室demo的时候，为了方便，便基于`socket.io-client`做了插件，然后用`provide `和`inject`API做全局注入，然后就遇到了类型丢失的问题，在`provide`的时候还可以看到类型，但是`inject`的时候类型就丢失了

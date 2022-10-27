@@ -1,7 +1,6 @@
 ---
 title: Proxy
 date: 2021-05-19
-lang: zh
 duration: 10min
 ---
 ## 概述 [§](https://es6.ruanyifeng.com/#docs/proxy#概述) [⇧](https://es6.ruanyifeng.com/#docs/proxy)

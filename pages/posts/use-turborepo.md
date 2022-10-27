@@ -4,7 +4,6 @@ duration: 10min
 date: 2022-10-15
 tags: monorepo
 desc: 总结
-lang: zh
 ---
 
 ## 1. Setup

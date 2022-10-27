@@ -2,7 +2,6 @@
 title: webpack简单loader实现
 duration: 5min
 date: 2021-08-23
-lang: zh
 ---
 
 遵循Webpack对于loader的定义:

@@ -2,7 +2,6 @@
 title: Using Changesets with pnpm
 date: 2022-10-18
 duration: 10min
-lang: zh
 tags: monorepo
 desc: 总结
 ---

@@ -1,7 +1,6 @@
 ---
 title: Object.assign(...) 与 JSON.parse(JSON.stringify(...))的拷贝区别
 date: 2021-10-01
-lang: zh
 duration: 8min
 ---
 
