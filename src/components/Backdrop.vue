@@ -61,7 +61,7 @@ function step(b: Branch, depth = 0) {
 			step(
 				{
 					start: end,
-					length: b.length * 0.5 + Math.random() * 4,
+					length: b.length * 0.6 + Math.random() * 5,
 					theta: b.theta - 0.3 * Math.random()
 				},
 				depth + 1
@@ -74,13 +74,14 @@ function step(b: Branch, depth = 0) {
 			step(
 				{
 					start: end,
-					length: b.length * 0.5 + Math.random() * 4,
+					length: b.length * 0.6 + Math.random() * 5,
 					theta: b.theta + 0.3 * Math.random()
 				},
 				depth + 1
 			)
 		)
 	}
+	console.log(b.theta)
 }
 
 function frame() {
