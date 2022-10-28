@@ -81,8 +81,6 @@ function step(b: Branch, depth = 0) {
 			)
 		)
 	}
-
-	console.log(`length: ${b.length}`)
 }
 
 function frame() {
