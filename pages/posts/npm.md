@@ -47,7 +47,7 @@ module.exports = {
 
   repository: {
     type: 'git',
-    url: 'git://github.com/'+USER+'/' + basename + '.git' 
+    url: 'git://github.com/'+USER+'/' + basename + '.git'
   },
 
   bugs: { url: 'https://github.com/'+USER'/' + basename + '/issues' },
