@@ -1,7 +1,7 @@
 <script setup lang="ts">
 interface PropsTypes {
 	color?: string
-	title: string
+	title?: string
 	icon?: string
 	desc?: string
 	iconBg?: string

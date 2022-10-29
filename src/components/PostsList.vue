@@ -12,7 +12,7 @@ export interface Post {
 
 const props = defineProps<{
 	type?: string
-	posts: Post[]
+	posts?: Post[]
 }>()
 
 const router = useRouter()

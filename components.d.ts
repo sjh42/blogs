@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
     AppLink: typeof import('./src/components/AppLink.vue')['default']
     Backdrop: typeof import('./src/components/Backdrop.vue')['default']
     Footer: typeof import('./src/components/Footer.vue')['default']
+    MarkdownTable: typeof import('./src/components/MarkdownTable.vue')['default']
     NavBar: typeof import('./src/components/NavBar.vue')['default']
     Note: typeof import('./src/components/Note.vue')['default']
     Post: typeof import('./src/components/Post.vue')['default']
