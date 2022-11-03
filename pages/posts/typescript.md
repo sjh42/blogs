@@ -2,7 +2,7 @@
 title: Type Challenge
 date: 2022-08-16
 tags: typescript
-desc: 文档
+desc: 记录
 ---
 
 ## 2 - Get Return Type
