@@ -70,3 +70,6 @@ ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/the
 # third
 source ~/.zshrc
 ```
+
+### 字体
+如果使用了spaceship主题，无法显示图标请先安装[Nerd Fonts字体](https://github.com/ryanoasis/nerd-fonts/blob/master/readme_cn.md#option-4-homebrew-fonts)
