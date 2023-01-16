@@ -73,3 +73,27 @@ source ~/.zshrc
 
 ### 字体
 如果使用了spaceship主题，无法显示图标请先安装[Nerd Fonts字体](https://github.com/ryanoasis/nerd-fonts/blob/master/readme_cn.md#option-4-homebrew-fonts)
+
+
+## mac配置golang的环境变量
+
+安装了brew可以直接输入一下指令
+
+```shell
+brew install go
+```
+
+然后需要设置GOROOT，GOPATH，PATH这三个环境变量，所以直接在~/.zshrc中写
+
+```shell
+export GOROOT = /usr/local/Cellar/go/1.19.4/libexec/
+export GOPATH = $HOME/go
+export PATH = $GOROOT/bin:$GOPATH/bin:$PATH
+```
+最后 source ~/.zshrc
+
+GOROOT路径是go的安装路径，一般是/usr/local/go或者 /usr/local/Cellar/go，如果不知道是安装到了哪个目录可以通过brew list go来查看。
+
+GOPATH是以后打算把包存放的路径，可以随便写一个自己想写的路径
+
+将$GOPATH/bin加入 $PATH 变量，这样在终端的任何路径都能使用go包的bin目录下面的工具，不需要进入到bin目录或者指定目录，比较方便。
