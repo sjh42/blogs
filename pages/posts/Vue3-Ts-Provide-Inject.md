@@ -13,8 +13,8 @@ date: 2022-08-23
 
 ```ts
 // SocketInjectKey
-import { InjectionKey } from 'vue'
-import { Socket } from 'socket.io-client'
+import type { InjectionKey } from 'vue'
+import type { Socket } from 'socket.io-client'
 
 export const SocketInjectKey: InjectionKey<Socket> = Symbol('socket')
 ```
@@ -22,18 +22,18 @@ export const SocketInjectKey: InjectionKey<Socket> = Symbol('socket')
 #### 定义
 
 ```ts 
-import { App } from 'vue'
+import type { App } from 'vue'
 import { io } from 'socket.io-client'
 import { SocketInjectKey } from '../types'
 
 interface IO {
-  connection: string,
+  connection: string
   options: any
 }
 export default {
-  install: (app: App, { connection, options }: IO ) => {
+  install: (app: App, { connection, options }: IO) => {
     const socket = io(connection, options)
-    app.config.globalProperties.$socket =  socket
+    app.config.globalProperties.$socket = socket
     app.provide(SocketInjectKey, socket)
   }
 }

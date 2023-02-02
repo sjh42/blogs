@@ -15,9 +15,9 @@ import anchor from 'markdown-it-anchor'
 import LinkAttributes from 'markdown-it-link-attributes'
 import matter from 'gray-matter'
 import fs from 'fs-extra'
-// @ts-ignore
+// @ts-expect-error
 import TOC from 'markdown-it-table-of-contents'
-import { slugify } from  './script/slugify'
+import { slugify } from './script/slugify'
 
 import 'prismjs/components/prism-regex'
 import 'prismjs/components/prism-javascript'
@@ -48,7 +48,7 @@ export default defineConfig({
     }),
 
     SVG({
-      svgo: false
+      svgo: false,
     }),
 
     // https://github.com/antfu/vite-plugin-vue-markdown
@@ -118,12 +118,12 @@ export default defineConfig({
         IconsResolver({
           componentPrefix: '',
         }),
-      ]
+      ],
     }),
 
     // https://github.com/antfu/unocss
     // see unocss.config.ts for config
-    Unocss()
+    Unocss(),
   ],
 
   // https://github.com/vitest-dev/vitest
@@ -133,6 +133,6 @@ export default defineConfig({
   server: {
     port: 3333,
     open: true,
-    host: true  
-  }
+    host: true,
+  },
 })

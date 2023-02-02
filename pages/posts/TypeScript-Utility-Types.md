@@ -12,7 +12,7 @@ desc: 记录
 ```ts
 type A = Awaited<Promise<string>> // type A = string
 type B = Awaited<Promise<Promise<number>>> // type B = number
-type C = Awaited<boolean | Promise<number>>  // type C = boolean | number
+type C = Awaited<boolean | Promise<number>> // type C = boolean | number
 ```
 
 ## [2. Partial](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype)
@@ -63,10 +63,10 @@ interface Todo {
 }
 
 const todo: Readonly<Todo> = {
-  title: "Delete inactive users",
+  title: 'Delete inactive users',
 }
 
-todo.title = "Hello" // no pass
+todo.title = 'Hello' // no pass
 // Cannot assign to 'title' because it is a read-only property.
 ```
 
@@ -80,12 +80,12 @@ interface CatInfo {
   breed: string
 }
 
-type CatName = "miffy" | "boris" | "mordred"
+type CatName = 'miffy' | 'boris' | 'mordred'
 
 const cats: Record<CatName, CatInfo> = {
-  miffy: { age: 10, breed: "Persian" },
-  boris: { age: 5, breed: "Maine Coon" },
-  mordred: { age: 16, breed: "British Shorthair" },
+  miffy: { age: 10, breed: 'Persian' },
+  boris: { age: 5, breed: 'Maine Coon' },
+  mordred: { age: 16, breed: 'British Shorthair' },
 }
 
 cats.boris // const cats: Record<CatName, CatInfo>
@@ -102,10 +102,10 @@ interface Todo {
   completed: boolean
 }
 
-type TodoPreview = Pick<Todo, "title" | "completed">
+type TodoPreview = Pick<Todo, 'title' | 'completed'>
 
 const todo: TodoPreview = {
-  title: "Clean room",
+  title: 'Clean room',
   completed: false,
 }
 ```
@@ -122,19 +122,19 @@ interface Todo {
   createdAt: number
 }
 
-type TodoPreview = Omit<Todo, "description"> // type TodoPreview = { completed: boolean createdAt: number title: string }
+type TodoPreview = Omit<Todo, 'description'> // type TodoPreview = { completed: boolean createdAt: number title: string }
 
 const todo: TodoPreview = {
-  title: "Clean room",
+  title: 'Clean room',
   completed: false,
   createdAt: 1615544252770,
 }
 
-type TodoInfo = Omit<Todo, "completed" | "createdAt"> // // type TodoInfo = { description: string title: string }
- 
+type TodoInfo = Omit<Todo, 'completed' | 'createdAt'> // // type TodoInfo = { description: string title: string }
+
 const todoInfo: TodoInfo = {
-  title: "Pick up kids",
-  description: "Kindergarten closes at 5pm",
+  title: 'Pick up kids',
+  description: 'Kindergarten closes at 5pm',
 }
 ```
 
@@ -143,9 +143,9 @@ const todoInfo: TodoInfo = {
 通过从 `UnionType` 中排除可分配给 `ExcludedMembers` 的所有联合类型来构造类型。
 
 ```ts
-type T0 = Exclude<"a" | "b" | "c", "a"> // type T0 = "b" | "c"
+type T0 = Exclude<'a' | 'b' | 'c', 'a'> // type T0 = "b" | "c"
 
-type T1 = Exclude<"a" | "b" | "c", "a" | "b"> // type T1 = "c"
+type T1 = Exclude<'a' | 'b' | 'c', 'a' | 'b'> // type T1 = "c"
 
 type T2 = Exclude<string | number | (() => void), Function> // type T2 = string | number
 ```
@@ -155,7 +155,7 @@ type T2 = Exclude<string | number | (() => void), Function> // type T2 = string 
 通过从 `T` 中提取可分配给 `Union` 的所有联合类型来构造类型
 
 ```ts
-type T0 = Extract<"a" | "b" | "c", "a" | "f"> // type T0 = "a"
+type T0 = Extract<'a' | 'b' | 'c', 'a' | 'f'> // type T0 = "a"
 
 type T1 = Extract<string | number | (() => void), Function> // type T1 = () => void
 ```

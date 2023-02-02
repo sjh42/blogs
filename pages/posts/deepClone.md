@@ -30,24 +30,24 @@ const options = {
       str: 1,
     },
     func: () => {
-      console.log(1);
+      console.log(1)
     },
     time: new Date(),
     reg: new RegExp(),
   },
   number: 1,
   length: 2,
-};
+}
 
-const str = Object.assign({}, options);
+const str = Object.assign({}, options)
 
-str.number = 2;
-str.obj.b = '修改了';
-str.obj.d.str = '也修改了';
+str.number = 2
+str.obj.b = '修改了'
+str.obj.d.str = '也修改了'
 
-options.obj.d.str = '修改回来';
+options.obj.d.str = '修改回来'
 
-console.log(`str`, str);  //str
+console.log('str', str) // str
 /*
 length: 2
 number: 2
@@ -61,8 +61,8 @@ func: () => { console.log(1); }
 reg: /(?:)/
 time: Fri Aug 26 2022 22:36:02 GMT+0800 (中国标准时间) {}
 */
-console.log('options', options); // options 
-/* 
+console.log('options', options) // options
+/*
 length: 2
 number: 1
 obj:
@@ -94,7 +94,7 @@ JSON.stringify()将值转换为相应的 JSON 格式：
 **JSON.parse(JSON.stringify(...))**
 
 ```js
-const set = new Set([1, 2, 3, 4]);
+const set = new Set([1, 2, 3, 4])
 
 const options = {
   obj: {
@@ -106,7 +106,7 @@ const options = {
       str: 1,
     },
     func: () => {
-      console.log(1);
+      console.log(1)
     },
     time: new Date(),
     reg: new RegExp(),
@@ -114,17 +114,17 @@ const options = {
   number: 1,
   length: 2,
   set
-};
+}
 
-const str = JSON.parse(JSON.stringify(options));
+const str = JSON.parse(JSON.stringify(options))
 
-str.number = 2;
-str.obj.b = '修改了';
-str.obj.d.str = '也修改了';
+str.number = 2
+str.obj.b = '修改了'
+str.obj.d.str = '也修改了'
 
-options.obj.d.str = '修改回来';
+options.obj.d.str = '修改回来'
 
-console.log(`str`, str); // str
+console.log('str', str) // str
 /*
 length: 2
 number: 2
@@ -138,7 +138,7 @@ reg: {}
 set: {},
 time: "2022-08-26T15:14:23.910Z"
 */
-console.log('options', options); // options
+console.log('options', options) // options
 /*
 length: 2
 number: 1
@@ -168,18 +168,18 @@ const options = {
       str: 1,
     },
     func: () => {
-      console.log(1);
+      console.log(1)
     },
     time: new Date(),
     reg: new RegExp(),
   },
   number: 1,
   length: 2,
-};
+}
 
 Object.defineProperty(options, 'obj', {
   enumerable: false
-});
+})
 
 // const str = JSON.parse(JSON.stringify(options));
 // const str = Object.assign({}, options);

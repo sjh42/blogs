@@ -43,8 +43,8 @@ export default defineConfig({
 ```json
 {
   "tsup": {
-    "entry": "../.",
+    "entry": "../."
     // .....
-  },
+  }
 }
 ```

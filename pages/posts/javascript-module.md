@@ -15,7 +15,7 @@ ES6 模块的设计思想是尽量的静态化，使得编译时就能确定模�
 let { stat, exists, readfile } = require('fs')
 
 // 等同于
-let _fs = require('fs')
+const _fs = require('fs')
 let stat = _fs.stat
 let exists = _fs.exists
 let readfile = _fs.readfile
@@ -26,7 +26,7 @@ let readfile = _fs.readfile
 ES6 模块不是对象，而是通过 export 命令显式指定输出的代码，再通过 import 命令输入。
 
 ```js
-import { stat, exists, readFile } from 'fs'
+import { exists, readFile, stat } from 'fs'
 ```
 
 上面代码的实质是从 fs 模块加载 3 个方法，其他方法不加载。这种加载称为“编译时加载”或者静态加载，即 ES6 可以在编译时就完成模块加载，效率要比 CommonJS 模块的加载方式高。当然，这也导致了没法引用 ES6 模块本身，因为它不是对象。
@@ -107,9 +107,9 @@ export { n as m }
 
 ```js
 // import.js
-Foo()
-
 import { foo as Foo, m } from './export.js'
+
+Foo()
 
 // 报错 TypeError: Assignment to constant variable
 m = {}
@@ -125,10 +125,10 @@ export default 是默认导出，在加载默认导出的模块是，import 命�
 
 ```js
 // exportdefault.js
-export default function () {}
-
 // index.js
 import custom from './export'
+
+export default function () {}
 ```
 
 上面代码的 import 命令，可以用任意名称指向 export-default.js 输出的方法，这时就不需要知道原模块输出的函数名。需要注意的是，这时 import 命令后面，不使用大括号。
@@ -138,16 +138,16 @@ export default 命令用在非匿名函数前，也是可以的。
 ```js
 // export-default.js
 export default function foo() {
-  console.log('foo');
+  console.log('foo')
 }
 
 // 或者写成
 
 function foo() {
-  console.log('foo');
+  console.log('foo')
 }
 
-export default foo;
+export default foo
 ```
 
 上面代码中，foo 函数的函数名 foo，在模块外部是无效的。加载的时候，视同匿名函数加载。
@@ -157,15 +157,15 @@ export default foo;
 ```js
 // 第一组
 // 输出
-export default function crc32() {}
+import crc32 from 'crc32'
 
-import crc32 from 'crc32' // 输入
+import { crc32 } from 'crc32'
+
+export default function crc32() {} // 输入
 
 // 第二组
 // 输出
-export function crc32() {}
-
-import { crc32 } from 'crc32' // 输入
+export function crc32() {} // 输入
 ```
 
 上面代码的两组写法，第一组是使用 export default 时，对应的 import 语句不需要使用大括号；第二组是不使用 export default 时，对应的 import 语句需要使用大括号。
@@ -176,15 +176,15 @@ export default 命令用于指定模块的默认输出。显然，一个模块�
 
 ```js
 // modules.js
-function add(x, y) {
-	return x * y
-}
-export { add as default }
 // 等同于
 // export default add;
 
 // app.js
 import { default as foo } from 'modules'
+function add(x, y) {
+  return x * y
+}
+export { add as default }
 // 等同于
 // import foo from 'modules';
 ```
@@ -253,8 +253,8 @@ package.json 文件有两个字段可以指定模块的入口文件：main 和 e
 // node_modules/es-module-package/package.json
 
 {
-	"type": "module",
-	"main": "./src/index.js"
+  "type": "module",
+  "main": "./src/index.js"
 }
 ```
 
@@ -283,9 +283,9 @@ exports 字段的优先级高于 main 字段。它有多种用法。
 ```json
 // ./node_modules/es-module-package/package.json
 {
-	"exports": {
-		"./submodule": "./src/submodule.js"
-	}
+  "exports": {
+    "./submodule": "./src/submodule.js"
+  }
 }
 ```
 
@@ -326,10 +326,10 @@ import submodule from './node_modules/es-module-package/private-module.js'
 
 ```json
 {
-	"main": "./main-legacy.cjs",
-	"exports": {
-		".": "./main-modern.cjs"
-	}
+  "main": "./main-legacy.cjs",
+  "exports": {
+    ".": "./main-modern.cjs"
+  }
 }
 ```
 
@@ -340,13 +340,13 @@ import submodule from './node_modules/es-module-package/private-module.js'
 
 ```json
 {
-	"type": "module",
-	"exports": {
-		".": {
-			"require": "./main.cjs",
-			"default": "./main.js"
-		}
-	}
+  "type": "module",
+  "exports": {
+    ".": {
+      "require": "./main.cjs",
+      "default": "./main.js"
+    }
+  }
 }
 ```
 
@@ -356,10 +356,10 @@ import submodule from './node_modules/es-module-package/private-module.js'
 
 ```json
 {
-	"exports": {
-		"require": "./main.cjs",
-		"default": "./main.js"
-	}
+  "exports": {
+    "require": "./main.cjs",
+    "default": "./main.js"
+  }
 }
 ```
 
@@ -368,8 +368,8 @@ import submodule from './node_modules/es-module-package/private-module.js'
 CommonJS 的 require()命令不能加载 ES6 模块，会报错，只能使用 import()这个方法加载。
 
 ```js
-;(async () => {
-	await import('./my-app.mjs')
+(async () => {
+  await import('./my-app.mjs')
 })()
 ```
 
@@ -400,10 +400,10 @@ const { method } = packageMain
 
 ```js
 // cjs.cjs
-module.exports = 'cjs'
-
 // esm.mjs
 import { createRequire } from 'module'
+
+module.exports = 'cjs'
 
 const require = createRequire(import.meta.url)
 

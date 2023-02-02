@@ -2,7 +2,7 @@
 interface MarkdownTitle {
   leftTitle?: string
   rightTitle?: string
-} 
+}
 const props = defineProps<MarkdownTitle>()
 </script>
 
@@ -10,18 +10,18 @@ const props = defineProps<MarkdownTitle>()
   <table>
     <tr class="sm:w-full sm:flex-row flex flex-col">
       <th class="pl-2">
-        {{props.leftTitle}}
+        {{ props.leftTitle }}
         <tr>
           <td class="w-100">
-            <slot name="left"></slot>
+            <slot name="left" />
           </td>
         </tr>
       </th>
       <th class="pl-2">
-        {{props.rightTitle}}
+        {{ props.rightTitle }}
         <tr>
           <td class="w-100">
-            <slot name="right"></slot>
+            <slot name="right" />
           </td>
         </tr>
       </th>
