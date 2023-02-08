@@ -1,5 +1,5 @@
 ---
-title: 《你不知道的Javascript》 - 构造函数
+title: 《你不知道的JavaScript》 - 构造函数
 desc: 总结
 date: 2021-06-23
 duration: 30min

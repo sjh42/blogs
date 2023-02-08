@@ -12,12 +12,11 @@ ES6 模块的设计思想是尽量的静态化，使得编译时就能确定模�
 
 ```js
 // CommonJS module
-let { stat, exists, readfile } = require('fs')
+let { stat, readfile } = require('fs')
 
 // 等同于
 const _fs = require('fs')
 let stat = _fs.stat
-let exists = _fs.exists
 let readfile = _fs.readfile
 ```
 
@@ -26,7 +25,7 @@ let readfile = _fs.readfile
 ES6 模块不是对象，而是通过 export 命令显式指定输出的代码，再通过 import 命令输入。
 
 ```js
-import { exists, readFile, stat } from 'fs'
+import { readFile, stat } from 'fs'
 ```
 
 上面代码的实质是从 fs 模块加载 3 个方法，其他方法不加载。这种加载称为“编译时加载”或者静态加载，即 ES6 可以在编译时就完成模块加载，效率要比 CommonJS 模块的加载方式高。当然，这也导致了没法引用 ES6 模块本身，因为它不是对象。

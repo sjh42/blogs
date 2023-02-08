@@ -1,7 +1,3 @@
----
-title: golang fiber使用记录
-date: 2023-01-22
----
 ## init
 
 ```go
