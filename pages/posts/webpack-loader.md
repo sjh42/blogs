@@ -2,7 +2,6 @@
 title: webpack简单loader实现
 duration: 5min
 date: 2021-08-23
-lang: zh
 ---
 
 遵循Webpack对于loader的定义:
@@ -26,11 +25,12 @@ npm install js-yaml json-loader -D
 ```js 
 const yaml = require('js-yaml')
 
-module.exports = function(source) {
+module.exports = function (source) {
   try {
     const doc = yaml.load(source)
-    return `${JSON.stringify(doc, null, 2)}`;
-  } catch(error) {
+    return `${JSON.stringify(doc, null, 2)}`
+  }
+  catch (error) {
     console.error(error)
   }
 }
@@ -56,7 +56,7 @@ module.exports = {
         test: /\.(js|jsx|ts|tsx)$/i,
         exclude: /node_modules/,
         use: {
-          loader:'babel-loader',
+          loader: 'babel-loader',
           options: {
             cacheDirectory: true,
             presets: [

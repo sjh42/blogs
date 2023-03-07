@@ -1,7 +1,6 @@
 ---
 title: Automate with defaults npm init
 date: 2022-08-01
-lang: zh
 duration: 5min
 ---
 
@@ -48,7 +47,7 @@ module.exports = {
 
   repository: {
     type: 'git',
-    url: 'git://github.com/'+USER+'/' + basename + '.git' 
+    url: 'git://github.com/'+USER+'/' + basename + '.git'
   },
 
   bugs: { url: 'https://github.com/'+USER'/' + basename + '/issues' },

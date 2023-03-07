@@ -1,7 +1,6 @@
 ---
 title: Symbol
 date: 2021-05-19
-lang: zh
 duration: 10min
 ---
 # Symbol
@@ -15,7 +14,7 @@ ES6 引入了一种新的原始数据类型`Symbol`，表示独一无二的值�
 Symbol 值通过`Symbol`函数生成。这就是说，对象的属性名现在可以有两种类型，一种是原来就有的字符串，另一种就是新增的 Symbol 类型。凡是属性名属于 Symbol 类型，就都是独一无二的，可以保证不会与其他属性名产生冲突。
 
 ```ts
-let s = Symbol();
+const s = Symbol()
 
 typeof s
 // "symbol"
@@ -28,8 +27,8 @@ typeof s
 `Symbol`函数可以接受一个字符串作为参数，表示对 Symbol 实例的描述，主要是为了在控制台显示，或者转为字符串时，比较容易区分。
 
 ```ts
-let s1 = Symbol('foo');
-let s2 = Symbol('bar');
+const s1 = Symbol('foo')
+const s2 = Symbol('bar')
 
 s1 // Symbol(foo)
 s2 // Symbol(bar)
@@ -43,10 +42,10 @@ s2.toString() // "Symbol(bar)"
 ```ts
 const obj = {
   toString() {
-    return 'abc';
+    return 'abc'
   }
-};
-const sym = Symbol(obj);
+}
+const sym = Symbol(obj)
 sym // Symbol(abc)
 ```
 
@@ -54,14 +53,14 @@ sym // Symbol(abc)
 
 ```ts
 // 没有参数的情况
-let s1 = Symbol();
-let s2 = Symbol();
+let s1 = Symbol()
+let s2 = Symbol()
 
 s1 === s2 // false
 
 // 有参数的情况
-let s1 = Symbol('foo');
-let s2 = Symbol('foo');
+let s1 = Symbol('foo')
+let s2 = Symbol('foo')
 
 s1 === s2 // false
 ```
@@ -71,27 +70,27 @@ s1 === s2 // false
 由于以 Symbol 值作为键名，不会被常规方法遍历得到。我们可以利用这个特性，为对象定义一些非私有的、但又希望只用于内部的方法。
 
 ```ts
-let size = Symbol('size');
+const size = Symbol('size')
 
 class Collection {
   constructor() {
-    this[size] = 0;
+    this[size] = 0
   }
 
   add(item) {
-    this[this[size]] = item;
-    this[size]++;
+    this[this[size]] = item
+    this[size]++
   }
 
   static sizeOf(instance) {
-    return instance[size];
+    return instance[size]
   }
 }
 
-let x = new Collection();
+const x = new Collection()
 Collection.sizeOf(x) // 0
 
-x.add('foo');
+x.add('foo')
 Collection.sizeOf(x) // 1
 
 Object.keys(x) // ['0']

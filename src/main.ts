@@ -9,7 +9,6 @@ import './styles/prose.css'
 import './styles/markdown.css'
 import 'uno.css'
 
-
 const routes = autoRoutes.map((i) => {
   return {
     ...i,
@@ -26,10 +25,9 @@ const scrollBehavior = (to: any, from: any, savedPosition: any) => {
     return { top: 0 }
 }
 
-export const createApp = ViteSSG(App, { routes, scrollBehavior },  ({ /* app */ router, /* routes */ isClient /* initialState */  }) => {
-
-	if (isClient) {
-		router.beforeEach(() => { NProgress.start() })
-		router.afterEach(() => { NProgress.done() })
-	}
-},)
+export const createApp = ViteSSG(App, { routes, scrollBehavior }, ({ /* app */ router, /* routes */ isClient /* initialState */ }) => {
+  if (isClient) {
+    router.beforeEach(() => { NProgress.start() })
+    router.afterEach(() => { NProgress.done() })
+  }
+})
