@@ -144,7 +144,7 @@ function new() {
 
   const target = Object.create(constructor.prototype)
 
-  const result = constructor.apply(target, ...args)
+  const result = constructor.apply(target, args)
 
   return typeof result === 'object' && result !== null ? result : target;
 }
