@@ -2,7 +2,7 @@
 title: TypeScript Utility Types
 date: 2022-07-01
 tags: typescript
-desc: 记录
+desc: 收集
 ---
 
 ## [1. Awaited](https://www.typescriptlang.org/docs/handbook/utility-types.html#awaitedtype)

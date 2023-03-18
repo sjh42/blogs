@@ -25,15 +25,15 @@ onMounted(() => {
 
     if (
       !event.defaultPrevented
-			&& link
-			&& event.button === 0
-			&& link.target !== '_blank'
-			&& link.rel !== 'external'
-			&& !link.download
-			&& !event.metaKey
-			&& !event.ctrlKey
-			&& !event.shiftKey
-			&& !event.altKey
+      && link
+      && event.button === 0
+      && link.target !== '_blank'
+      && link.rel !== 'external'
+      && !link.download
+      && !event.metaKey
+      && !event.ctrlKey
+      && !event.shiftKey
+      && !event.altKey
     ) {
       const url = new URL(link.href)
       if (url.origin !== window.location.origin)
@@ -77,11 +77,16 @@ onMounted(() => {
     <span text-xl sm:text-2xl>导航</span>
     <nav>
       <ul>
-        <li v-for="nav in tags" p-1 hover="color-#54b1bf">
+        <li
+          v-for="nav in tags"
+          :key="nav.id"
+          p-1
+          hover="color-#54b1bf"
+        >
           <div v-if="nav.nodeName === 'H2'" pl-4>
             <a :href="`#${nav.id}`">{{ nav.textContent?.replace('#', '') }}</a>
           </div>
-          <div v-else pl-8>
+          <div v-else pl-3>
             <a :href="`#${nav.id}`">{{ nav.textContent?.replace('#', '') }}</a>
           </div>
         </li>
