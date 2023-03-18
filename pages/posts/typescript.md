@@ -1,203 +1,34 @@
 ---
-title: Type Challenge
-date: 2022-08-16
-tags: typescript
-desc: 记录
+title: TypeScript 面试题
+desc: 收集
+date: 2023-03-17
+tags: TypeScript
 ---
 
-## 2 - Get Return Type
-```ts
-type MyReturnType<T> = T extends (...args: any[]) => infer T ? T : never
-```
+### 1. 有了解过 TypeScript 吗，讲一下泛型？
 
-## 5 - Get Readonly Keys
-```ts
-type GetReadonlyKeys<T> = {
-  [K in keyof T as Equal<{ [P in K]: T[P] }, { readonly [P in K]: T[P] }> extends true ? K : never]: T[K]
-} extends infer F ? keyof F : never
-```
+  1. TypeScript中的泛型（Generics）指的是一种可以在定义函数、类和接口时使用的占位符类型，它可以用来表示函数、类和接口中的参数类型或返回值类型，以及定义复杂数据结构中的数据类型。
 
-## 7 - Readonly
-```ts
-type MyReadonly<T> = {
-  readonly [K in keyof T]: T[K]
-}
-```
+  使用泛型可以提高代码的复用性和灵活性，使代码更加通用。在定义泛型时，使用尖括号 < > 来声明泛型参数，例如：
 
-## 8 - Readonly2
-```ts 
-type MyReadonly2<T, K = keyof T> = {
-  [P in keyof T as P extends K ? never : P]: T[P]
-} & {
-  readonly [P in keyof T as P extends K ? P : never]: T[P]
-}
-```
+  ```ts
+  function identity<T>(arg: T): T {
+    return arg;
+  }
+  ```
+  总之，泛型是 TypeScript 中非常重要的特性，它可以提高代码的灵活性和复用性，使代码更加通用和易于维护
 
-## 9 - deep readonly
-``` ts
-type DeepReadonly<T> = keyof T extends never ? T : { readonly [K in keyof T]: DeepReadonly<T[K]> }
-```
+### 2. infer
+  1. infer 是 TypeScript 4.1 新增的关键字，它可以用来推断泛型的类型，例如：
 
-## 10 -Tuple to Union
-```ts
-type TupleToUnion<T extends any[]> = T[number]
-```
+  ```ts
+  type ReturnType<T extends (...args: any[]) => any> = T extends (...args: any[]) =>   infer R ? R : any;
+  ```
 
-## 11 - Tuple to Object
-```ts
-type TupleToObject<T extends readonly (keyof any)[]> = {
-  [K in T[number]]: K
-}
-```
+### 3. any 和 unknow 的区别
 
-## 12 - Chainable Options
-```ts
-interface Chainable<T = {}> {
-  option: <K extends string, V>(key: K extends keyof T ? V extends T[K] ? never : K : K, value: V) => Chainable<Omit<T, K> & Record<K, V>>
-  get: () => T
-}
-```
+  1. `any` 表示任意类型，一旦一个变量被声明为 `any` 类型，就可以随意赋值任何类型的值给它，而且不会被 `TypeScript` 编译器检查类型的正确性。在一些情况下，使用 `any` 类型可以方便地处理一些类型不明确的情况，但是过多地使用 `any` 类型会破坏 `TypeScript` 类型检查的作用，不利于代码的维护和扩展。
 
-## 14 - First of Array
-```ts 
-type First<T extends any[]> = T extends [infer F, ...any[]] ? F : never
-```
+  2. `unknown` 表示未知类型，它与 `any` 类型类似，但是有一个重要的区别，那就是不能随意将 `unknown` 类型的值赋给其他类型的变量，因为编译器无法确定这个变量的类型是否兼容。如果要将 `unknown` 类型的值赋给其他类型的变量，需要使用类型断言或者进行类型检查。
 
-## 15 - Last of Array
-```ts 
-type Last<T extends any[]> = T extends [...any[], infer F] ? F : never
-```
-
-## 16 - Pop
-```ts 
-type Pop<T extends any[]> = T extends [...infer F, any] ? F : never
-```
-
-## 17 - Currying 1
-```ts 
-type getParams<T> = T extends (...args: [ ...infer F ]) => any ? F : never
-
-type Shift<T extends any[]> = T extends [any, ...infer F] ? F : never
-
-type Gen<Tuple extends unknown[]> = Shift<Tuple>['length'] extends 0 ? (a: Tuple[0]) => true : (a: Tuple[0]) => Gen<Shift<Tuple>>
-
-declare function Currying<T extends (...args: any[]) => any>(fn: T): Gen<getParams<T>>
-```
-
-## 18 - Length of Tuple
-```ts
-type Length<T extends readonly any[]> = T['length']
-```
-
-## 20 - Promise.all
-```ts 
-declare function PromiseAll<T extends unknown[]>(values: readonly [...T]): Promise<{ [ P in keyof T]: T[P] extends Promise<infer R> ? R : T[P] }>
-```
-
-## 42 - Exclude
-```ts
-type MyExclude<T, U> = T extends U ? never : T
-```
-
-## 62 - Type Lookup
-```ts
-type LookUp<U, T> = U extends { type: infer F }
-  ? F extends T ? U : never
-  : never
-```
-
-## 106 - Trim Left
-```ts
-type TrimLeft<S extends string> = S extends `${' ' | '\n' | '\t'}${infer R}` ? TrimLeft<R> : S
-```
-
-## 108 - Trim
-```ts 
-type WhiteSpace = ' ' | '\n' | '\t'
-
-type Trim<S extends string> = S extends | `${WhiteSpace}${infer R}` | `${infer R}${WhiteSpace}` ? Trim<R> : S
-```
-
-## 110 - Capitalize
-```ts 
-type MyCapitalize<S extends string> = S extends `${infer F}${infer R}` ? `${Uppercase<F>}${R}` : S
-```
-
-## 116 - Replace
-```ts
-type Replace<S extends string, From extends string, To extends string> = From extends ''
-  ? S
-  : S extends `${infer Start}${From}${infer End}`
-    ? `${Start}${To}${End}`
-    : S
-```
-
-## 119 - ReplaceAll
-```ts 
-type ReplaceAll<S extends string, From extends string, To extends string> = S extends `${infer Start}${From}${infer End}`
-  ? `${Start}${From extends '' ? From : To}${ReplaceAll<End, From, To>}`
-  : S
-```
-
-## 189 - Awaited
-```ts
-type MyAwaited<T extends Promise<unknown>> = T extends Promise<infer R>
-  ? R extends Promise<unknown>
-    ? MyAwaited<R>
-    : R
-  : never
-```
-
-## 191 - Append Argument
-```ts
-type AppendArgument<T extends (...args: any[]) => any, U>
-  = T extends (...args: infer A)
-  => infer B ? (...args: [...A, U])
-      => B : never
-```
-
-## 296 - Permutation
-```ts
-type Permutation<T, K = T> = K[] extends never[] ? [] : K extends K ? [K, ...Permutation<Exclude<T, K>>] : never
-```
-
-## 298 - Length of String
-```ts
-type StringToArray<S extends string> = S extends `${infer F}${infer R}`
-  ? [F, ...StringToArray<R>]
-  : []
-
-type LengthOfString<S extends string> = StringToArray<S>['length']
-```
-
-## [459 - Flatten](https://github.com/type-challenges/type-challenges/issues?q=is%3Aissue+Flatten+is%3Aopen)
-```ts
-type Flatten<T extends unknown[]> = T extends [infer F, ...infer R]
-  ? [...(F extends any[]
-      ? Flatten<F>
-      : [F]), ...Flatten<R>]
-  : []
-```
-
-## [527 - Append to object](https://github.com/type-challenges/type-challenges/issues?q=is%3Aissue+Append%20to%20object+is%3Aopen)
-```ts
-type AppendToObject<T, K extends PropertyKey, V> = {
-  [P in keyof T | K]: P extends keyof T ? T[P] : V
-}
-```
-
-## [529 - Absolute](https://github.com/type-challenges/type-challenges/issues?q=is%3Aissue+Absolute+is%3Aopen)
-```ts
-type Absolute<T extends number | string | bigint> =
-  `${T}` extends `-${infer R}`
-    ? R
-    : `${T}`
-```
-## [4484 - IsTuple](https://github.com/type-challenges/type-challenges/issues?q=label%3A4484+label%3Aanswer)
-```ts
-type IsTuple<T> = [T] extends [never]
-  ? false
-  : T extends ([] | [any] | Readonly<[unknown]> | [unknown] | Readonly<[any]>)
-    ? true
-    : false
-```
+  `总的来说，unknown` 类型比 `any` 类型更加安全，因为它可以防止不安全的类型转换。在使用 `TypeScript` 编写程序时，应该尽可能地使用确定的类型，避免使用 `any` 类型，而是使用 `unknown` 类型来进行类型推断。

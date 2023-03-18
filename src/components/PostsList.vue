@@ -4,7 +4,7 @@ const props = defineProps<{
   posts?: Post[]
 }>()
 
-export interface Post {
+interface Post {
   path: string
   title: string
   date: string
