@@ -15,7 +15,7 @@ tags: JavaScript
 
   总的来说，defer 是在页面加载完成后执行脚本，而 async 是在脚本下载完成后立即执行。如果你需要脚本依次按照它们在页面中出现的顺序执行，使用 defer。如果脚本之间没有依赖关系，并且它们不必等待文档解析，使用 async 可以提高页面加载速度。
 
-##### 2. Proxy 和 Reflect 有什么关系？
+### 2. Proxy 和 Reflect 有什么关系？
 
   1. 在 JavaScript 中，Proxy 是一个强大的内置对象，它允许你创建一个代理对象来控制对另一个对象的访问。Reflect 是另一个内置对象，它提供了一些原始操作的方法，例如获取对象的属性和设置对象的属性。Proxy 和 Reflect 都是 ECMAScript 6 中引入的新特性。
 
@@ -23,7 +23,7 @@ tags: JavaScript
 
   另外，Proxy 和 Reflect 还可以用于对象的元编程（meta-programming），也就是对对象的结构进行编程。通过在代理对象上拦截一些操作，你可以控制其行为，实现一些自定义的逻辑。同时，使用 Reflect 可以更加方便地执行这些操作。
 
-##### 3. 为什么 ES Module 需要把 import 放在顶部，CommonJS 不需要？
+### 3. 为什么 ES Module 需要把 import 放在顶部，CommonJS 不需要？
 
   1. 在 ES Module 中，所有的 import 语句都会被 JavaScript 引擎解析和处理，并且在代码运行前执行。这就意味着在运行时，所有的依赖关系都已经被处理完毕，所有的变量、函数等都已经被定义和初始化。所以，如果在 ES Module 中将 import 语句放到函数内部或者其他代码块中，那么这些 import 语句就会被放到这些代码块中的作用域内，并且可能导致意料之外的行为。
 
@@ -31,5 +31,25 @@ tags: JavaScript
 
   因此，为了避免在 ES Module 中出现意外的行为，所有的 import 语句应该放到模块的顶部。而在 CommonJS 中则没有这个限制。
 
+### 4. 浏览器的 reflow 和 repaint
 
+  浏览器的渲染大致分为四个阶段
 
+    1. Parse HTML: 相关引擎解析HTML，CSS以及JS，生成DOM和CSSOM，最后合成Render树
+    2. Layout: 浏览器通过Render树中的信息，以递归的形式计算出每个节点的尺寸大小和页面上的具体位置; reflow发生的位置
+    3. Paint: 浏览器将Render树中的节点转换成在屏幕上绘制的实际像素的指令，这个过程发生在多个图层上; repaint发生的位置
+    4. Composite: 浏览器将所有层按照一定顺序合并为一个图层并绘制在屏幕上
+
+  样式或节点的更改，以及对布局信息的访问等，都有可能导致重排和重绘。而重排和重绘的过程在主线程中进行，这意味着不合理的重排重绘会导致渲染卡顿，用户交互滞后等性能问题。
+
+  引起 `reflow` 和 `repaint` 的常见操作
+ 
+    1. 外观发生改变时会导致repaint，如color，background，border，visibility，	box-shadow等
+    2. 当DOM的变化影响到了元素的几何信息，浏览器需要重新计算每个节点的尺寸大小和页面上的具体位置; 例如：计算offsetTop、offsetLeft等布局信息，内容变化，比如在input框中输入文字，查询某些属性或调用某些方法，这样就会发生reflow
+  
+  如何减少`reflow` 和 `repaint`
+
+    1. 对 DOM 进行批量写入和读取（通过虚拟 DOM 或者 DocumentFragment 实现）。
+    2. 例如计算offsetTop、offsetLeft等布局信息，就可以减少频繁读取布局信息相关的API，比如clientTop等。那么可以“按需缓存”，按需缓存指的是利用变量保存读取的布局信息，供多次使用。而非每次都重新调用API读取
+    3. 将需要多次重排的元素，position属性设为absolute或fixed，这样此元素就脱离了文档流，它的变化不会影响到其他元素。例如有动画效果的元素就最好设置为绝对定位。
+    4. 由于display属性为none的元素不在渲染树中，对隐藏的元素操作不会引发其他元素的重排。如果要对一个元素进行复杂的操作时，可以先隐藏它，操作完成后再显示。这样只在隐藏和显示时触发2次重排。
