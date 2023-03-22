@@ -97,3 +97,37 @@ tags: Vue
     onTrigger?: (event: DebuggerEvent) => void
   }
   ```
+### 4. Vue的响应式原理
+
+  JS无法追踪原始数据类型变量的读写，但是可以追踪引用类型变量的属性的读写
+
+  在JS中有两种劫持property访问的方式，`Object.defineProperty` 和 `proxy`
+
+  1. `Vue2`:
+
+    1. Vue2中使用的便是使用了 `Object.defineProperty` 来劫持对象中的某一个属性。并且无法监听到对象属性的新增和删除
+
+  Vue2 响应式核心简单实现
+
+  ```js
+  function reactive(obj) {
+    Object.defineProperty(obj, {
+      
+    })
+  }
+  ```
+
+  2. `Vue3`: 
+
+    1. Vue3采用了 `Proxy` 来创建响应式对象，`Proxy`对象可以用于创建一个对象的代理，从而实现基本操作的拦截和自定义（如属性查找、赋值、枚举、函数调用等）。
+
+  Vue3 响应式核心简单实现
+  ```js
+  function reactive(obj) {
+    return new Proxy(obj, {
+      
+    })
+  }
+  ```
+
+  其中 `getter` 中主要是通过 `Dep` 收集依赖这个属性的订阅者，`setter` 中则是在属性变化后通知 `Dep` 收集到的订阅者，派发更新
