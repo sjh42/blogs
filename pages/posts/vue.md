@@ -24,9 +24,9 @@ tags: Vue
 
   在 Vue 中，watch 和 computed 都是用来监听响应式数据变化的。
 
-  1. watch 是一个侦听器，当监视的属性发生变化时，侦听器会自动执行相应的回调函数。watch 可以监听一个数据对象的属性，也可以监听一个计算属性。
+  1. watch 侦听一个或多个响应式数据源，并在数据源变化时调用所给的回调函数。
 
-  2. computed 是计算属性，根据一个或多个响应式数据的值进行计算，并返回计算结果。计算属性的值会被缓存，只有当其依赖的响应式数据发生改变时，才会重新计算。
+  2. computed 接受一个 getter 函数，返回一个只读的响应式 ref 对象。如果要返回一个可写的对象，它也可以接受一个带有 get 和 set 函数的对象来创建一个可写的 ref 对象
 
   *区别：*
 
@@ -34,7 +34,7 @@ tags: Vue
 
     2. watch 可以监听一个数据对象的属性，也可以监听一个计算属性，而 computed 只能计算一个响应式数据的值。
 
-    3. computed 的值会被缓存，只有当其依赖的响应式数据发生改变时，才会重新计算，而 watch 则会在属性变化时立即执行回调函数。
+    3. computed 的值会被缓存，只有当其依赖的响应式数据发生改变时，才会重新计算，而 watch 默认是懒侦听的，即仅在侦听源发生变化时才执行回调函数。。
 
 ### 3. watch 与 watchEffect 的区别
 
@@ -110,12 +110,27 @@ tags: Vue
   Vue2 响应式核心简单实现
 
   ```js
-  function reactive(obj) {
-    Object.defineProperty(obj, {
-      
+  function reactive(obj, key, val) {
+    Object.defineProperty(obj, key, {
+      enumerable: true,
+      configurable: true,
+      get: function(val) {
+        if (Dep.target) {
+          dep.depend()
+        }
+        return val
+      },
+      set: function(newVal) {
+        val = newVal
+        dep.Notify()
+      }
     })
   }
+  
+  // 依赖收集
+  // TODO
   ```
+  其中 `getter` 中主要是通过 `Dep` 收集依赖这个属性的订阅者，`setter` 中则是在属性变化后通知 `Dep` 收集到的订阅者，派发更新
 
   2. `Vue3`: 
 
@@ -124,10 +139,39 @@ tags: Vue
   Vue3 响应式核心简单实现
   ```js
   function reactive(obj) {
+    let activeEffect
+    const bucket = new WeakMap()
     return new Proxy(obj, {
-      
+      get(target, key) {
+        if (!activeEffect) return
+
+        let depsMap = bucket.get(key)
+        if (!depsMap) {
+          bucket.set(target, (depsMap = new Map()))
+        }
+
+        let deps = depsMap.get(key)
+        if (!deps) {
+          depsMap.set(key, (deps = new Set()))
+        }
+
+        deps.set(activeEffect)
+
+        return target(key)
+      },
+      // 拦截设置操作
+      set(target, key, newVal) {
+        target[key] = newVal
+
+        const depsMap = bucket.get(target)
+
+        if (!depsMap) return
+
+        // 根据key取出相对应的副作用函数
+        const effect = depsMap.get(key)
+        // 触发副作用函数
+        effect && effect.forEach(fn => fn())
+      }
     })
   }
   ```
-
-  其中 `getter` 中主要是通过 `Dep` 收集依赖这个属性的订阅者，`setter` 中则是在属性变化后通知 `Dep` 收集到的订阅者，派发更新
