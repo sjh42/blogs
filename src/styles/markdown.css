@@ -81,6 +81,10 @@ html.dark {
   color: inherit;
 }
 
+.prose pre code {
+  color: var(--fg-deep);
+}
+
 .prose hr {
   width: 50px;
   margin: 2em auto;
