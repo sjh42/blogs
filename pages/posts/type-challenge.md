@@ -201,3 +201,11 @@ type IsTuple<T> = [T] extends [never]
     ? true
     : false
 ```
+## [DeepPartial]
+```ts
+type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends object 
+    ? DeepPartial<T[P]> 
+    : Partial<T[P]>
+}
+```
