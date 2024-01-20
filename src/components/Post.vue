@@ -80,13 +80,13 @@ onMounted(() => {
         <li
           v-for="nav in tags"
           :key="nav.id"
-          p-1
+          p-2
           hover="color-#54b1bf"
         >
-          <div v-if="nav.nodeName === 'H2'" pl-4>
+          <div v-if="nav.nodeName === 'H2'" pl-6>
             <a :href="`#${nav.id}`">{{ nav.textContent?.replace('#', '') }}</a>
           </div>
-          <div v-else pl-3>
+          <div v-else pl-8>
             <a :href="`#${nav.id}`">{{ nav.textContent?.replace('#', '') }}</a>
           </div>
         </li>
